@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tệp Lên Mây</string>
-    <string name="login_title">Tải tệp lên Google Drive</string>
-    <string name="login_description">Chọn tài khoản Google sẽ nhận tệp. Tệp được chọn từ bộ nhớ cục bộ của thiết bị Android.</string>
+    <string name="app_name">Tải lên Drive</string>
+    <string name="login_title">Tải lên Google Drive</string>
+    <string name="login_description">Đăng nhập bằng tài khoản Google bạn muốn dùng để tải và chia sẻ tệp.</string>
     <string name="sign_in">Đăng nhập bằng Google</string>
     <string name="sign_out">Đăng xuất</string>
-    <string name="choose_file">Chọn tệp trên thiết bị</string>
+    <string name="choose_file">Chọn tệp để tải lên</string>
     <string name="uploaded_files">Tất cả tệp đã tải/chia sẻ bằng ứng dụng</string>
     <string name="empty_history">Chưa có tệp nào được tải hoặc chia sẻ bằng ứng dụng này.</string>
     <string name="loading">Đang tải…</string>
@@ -43,7 +43,7 @@
     <string name="upload_complete_notification">Tải lên hoàn tất</string>
     <string name="upload_running_notification">Đang tải lên Google Drive</string>
     <string name="upload_failed_notification">Tải lên bị gián đoạn</string>
-    <string name="upload_channel">Tải tệp lên đám mây</string>
+    <string name="upload_channel">Tải tệp lên Drive</string>
     <string name="upload_channel_description">Hiển thị tiến độ khi ứng dụng đang tải tệp lớn lên Google Drive.</string>
     <string name="open_file_folder_hint">Chạm vào tệp để mở thư mục đang chứa tệp trong Google Drive.</string>
     <string name="continue_button">Tiếp tục</string>

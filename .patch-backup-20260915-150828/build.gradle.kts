@@ -24,7 +24,7 @@ android {
         applicationId = "com.xong.driveupload"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
+        versionCode = 1
         versionName = "1.0.0"
     }
 
@@ -36,10 +36,10 @@ android {
                 keyAlias = keyAliasValue
                 keyPassword = keyPasswordValue
 
-                enableV1Signing = true
-                enableV2Signing = true
-                enableV3Signing = true
-                enableV4Signing = false
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
+            enableV4Signing = false
             }
         }
     }

@@ -17,7 +17,6 @@ import android.net.NetworkRequest
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.DocumentsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageButton
@@ -66,12 +65,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val filePicker = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            result.data?.data?.let(::handlePickedFile)
-        }
+    private val filePicker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) handlePickedFile(uri)
     }
 
     private val notificationPermissionLauncher = registerForActivityResult(
@@ -248,7 +243,7 @@ class MainActivity : AppCompatActivity() {
         list.adapter = adapter
 
         root.findViewById<MaterialButton>(R.id.chooseFileButton).setOnClickListener {
-            openLocalFilePicker()
+            filePicker.launch(arrayOf("*/*"))
         }
         root.findViewById<MaterialButton>(R.id.signOutButton).setOnClickListener {
             requestLogout()
@@ -283,30 +278,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun openLocalFilePicker() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "*/*"
-
-            // Source must be locally available on this Android device.
-            putExtra(Intent.EXTRA_LOCAL_ONLY, true)
-
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
-
-            // Do not reopen the cloud provider that Android's file picker
-            // happened to remember from its previous use.
-            putExtra(
-                DocumentsContract.EXTRA_INITIAL_URI,
-                Uri.parse(
-                    "content://com.android.providers.downloads.documents/root/downloads"
-                )
-            )
-        }
-
-        filePicker.launch(intent)
     }
 
     private fun handlePickedFile(uri: Uri) {
@@ -628,7 +599,7 @@ class MainActivity : AppCompatActivity() {
         val uri = Uri.parse(url).buildUpon()
             .appendQueryParameter("authuser", accountEmail)
             .build()
-        val driveIntent = Intent(Intent.ACTION_VIEW, uri)
+        val driveIntent = Intent(Intent.ACTION_VIEW, uri).setPackage("com.google.android.apps.docs")
         if (driveIntent.resolveActivity(packageManager) != null) {
             startActivity(driveIntent)
         } else {

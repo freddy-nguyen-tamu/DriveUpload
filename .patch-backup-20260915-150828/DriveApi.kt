@@ -86,7 +86,7 @@ class DriveApi {
         }
 
         val body = JSONObject()
-            .put("name", "Tệp từ ứng dụng Tệp Lên Mây")
+            .put("name", "Tệp từ ứng dụng Tải lên Drive")
             .put("mimeType", "application/vnd.google-apps.folder")
             .put("appProperties", JSONObject().put("xongDriveFolder", "1"))
         val createUrl = apiBase.newBuilder()
