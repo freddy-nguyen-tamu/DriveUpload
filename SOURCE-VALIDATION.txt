@@ -1,0 +1,14 @@
+DriveUpload static source validation
+================================
+
+PASS: XML parsed: 22 files
+PASS: Resources indexed: 57 strings, 39 ids, 17 resource files
+PASS: Package/applicationId: com.xong.driveupload
+PASS: Custom launcher icon resources present for legacy/adaptive/themed launchers
+PASS: No private keystore or generated APK embedded
+PASS: Kotlin delimiter scan: 11 files
+PASS: Required feature/build marker scan passed
+
+Result: PASS
+
+Validation scope: static source/resource checks. Full Android compilation is performed by build-apk.ps1 on Windows after it provisions the Android command-line SDK, Gradle, and dependencies.

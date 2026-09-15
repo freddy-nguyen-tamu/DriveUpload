@@ -1,0 +1,9 @@
+.gradle/
+.build-tools/
+.build-tools-linux/
+local.properties
+app/build/
+build/
+DriveUpload-release.apk
+*.jks
+*.keystore

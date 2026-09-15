@@ -1,0 +1,32 @@
+DRIVE UPLOAD — BUILD APK ON WINDOWS WITHOUT ANDROID STUDIO
+=========================================================
+
+1. Extract the ZIP.
+2. Put your EXISTING release keystore somewhere safe. It must be the same keystore
+   whose SHA-1 you registered in Google Cloud for package com.xong.driveupload.
+3. Open PowerShell in the extracted DriveUpload folder.
+4. Run:
+
+powershell -ExecutionPolicy Bypass -File .\build-apk.ps1 -KeystorePath "C:\path\to\drive-upload-release.jks" -KeyAlias "driveupload"
+
+Optional: make the script verify the Google OAuth SHA-1 you already registered:
+
+powershell -ExecutionPolicy Bypass -File .\build-apk.ps1 -KeystorePath "C:\path\to\drive-upload-release.jks" -KeyAlias "driveupload" -ExpectedSha1 "AA:BB:CC:DD:EE:FF:..."
+
+Optional: build and install to a USB-debugging-enabled Android phone:
+
+powershell -ExecutionPolicy Bypass -File .\build-apk.ps1 -KeystorePath "C:\path\to\drive-upload-release.jks" -KeyAlias "driveupload" -Install
+
+The script does NOT use Android Studio. It checks/installs JDK 17 when possible,
+downloads Google's official Android command-line tools, installs SDK 35 + Build Tools
+35.0.0 + adb, downloads Gradle 8.11.1, builds a signed release APK, verifies its
+signature, and writes:
+
+.\DriveUpload-release.apk
+
+Google Cloud requirements:
+- Google Drive API: enabled
+- OAuth client type: Android
+- Package name: com.xong.driveupload
+- SHA-1: from the same keystore used for this build
+- OAuth scope: https://www.googleapis.com/auth/drive.file
